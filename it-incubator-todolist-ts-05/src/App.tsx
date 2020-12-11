@@ -64,6 +64,13 @@ let [tasks, setTasks] = useState({
         setTasks({ ...tasks});
     }
 
+    function removeTodolist(todolistId: string) {
+        let filteredTodolists = todolists.filter(tl=>tl.id !== todolistId);
+        setTodolists(filteredTodolists);
+        delete tasks[todolistId];
+        setTasks({...tasks})
+    }
+
 
 
     function changeFilter(value: FilterValuesType, todolistID: string) {
@@ -74,6 +81,7 @@ let [tasks, setTasks] = useState({
        }
 
     }
+
 
 
     return (
@@ -98,6 +106,7 @@ let [tasks, setTasks] = useState({
                         addTask={addTask}
                         changeTaskStatus={changeStatus}
                         filter={tl.filter}
+                        removeTodolist={removeTodolist}
                     />
                 })
             }
